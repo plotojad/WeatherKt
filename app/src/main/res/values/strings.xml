@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">testApp3</string>
+    <string name="choiceTheCityAndSeason">Выберите город и сезон:</string>
+    <string name="result">Результат:</string>
+    <string name="city">Город:</string>
+    <string name="type">Тип:</string>
+    <string name="season">Сезон:</string>
+    <string name="middleTemp">Средняя температура:</string>
+    <string name="settings">Настройки</string>
+    <string name="addinfo">Добавить данные</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tempformat">Формат температуры</string>
+    <string name="addinfodialogtitle">Добавление данных</string>
+    <string name="t">t</string>
+    <string name="cityTitleAd">Город:</string>
+    <string name="enterNameHint">Введите название</string>
+    <string name="typeTitleAdd">Тип:</string>
+    <string name="selectTypeAdd">Выберите величину</string>
+    <string name="winter">Зима</string>
+    <string name="december">Декабрь</string>
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="spring">Весна</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="summer">Лето</string>
+    <string name="juny">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="autumn">Осень</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="add">Добавить</string>
+    <string name="enterTheNameToast">Введите название города</string>
+    <string name="enterTheInfoToast">Заполните все поля</string>
+    <string name="cityIsAdded">Информация добавлена</string>
+    <string name="addDataAlert">Добавьте данные</string>
+    <string name="selectbtn">Выбрать</string>
+</resources>

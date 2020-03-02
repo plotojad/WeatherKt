@@ -1,0 +1,2 @@
+rootProject.name='firstKt'
+include ':app'
