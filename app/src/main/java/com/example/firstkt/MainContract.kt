@@ -10,15 +10,15 @@ interface MainContract {
     }
 
     interface Presenter {
-        fun loadCityList(): ArrayList<String>
+        fun loadCityList(): ArrayList<String>?
         fun addInfo(data: Map<String, String>)
         fun onCityWasSelected(name: String, season: String)
         fun onDestroy()
     }
 
     interface Repository {
-        fun init(context: Context)
-        fun loadCityListNames(): ArrayList<String>
+        fun initial(context: Context)
+        fun loadCityListNames(): ArrayList<String>?
         fun loadCityInfo(name: String, season: String): Map<String, Any>
         fun writeCityInfo(
             nameCity: String,

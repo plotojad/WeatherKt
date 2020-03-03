@@ -3,15 +3,18 @@ package com.example.firstkt
 import android.content.Context
 import android.content.SharedPreferences
 
-class MainPresenter(val mView: MainContract.View, val context: Context) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, context: Context) : MainContract.Presenter {
 
 
-    private val KEY_FORMAT = "keyTFormat"
-    private val NAME_SETTINGS = "mSettings"
-    private val KEY_ADD_CONVERT = 0
-    private val KEY_SHOW_CONVERT = 1
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var mRepository: MainContract.Repository
+    companion object {
+        const val KEY_FORMAT = "keyTFormat"
+        const val NAME_SETTINGS = "mSettings"
+        const val KEY_ADD_CONVERT = 0
+        const val KEY_SHOW_CONVERT = 1
+    }
+
+    private var sharedPreferences: SharedPreferences
+    private var mRepository: MainContract.Repository = MainRepository.instance
 
     private lateinit var name: String
     private lateinit var type: String
@@ -21,57 +24,60 @@ class MainPresenter(val mView: MainContract.View, val context: Context) : MainCo
 
 
     init {
-        mRepository.init(context)
+        mRepository.initial(context)
         sharedPreferences = context.getSharedPreferences(NAME_SETTINGS, Context.MODE_PRIVATE)
     }
 
 
-    override fun loadCityList(): ArrayList<String> {
+    override fun loadCityList(): ArrayList<String>? {
         return mRepository.loadCityListNames()
     }
 
     override fun addInfo(data: Map<String, String>) {
-        if (data != null) {
-            var name = data.get("name").toString()
-            var type = data.get("type").toString()
-            var winterT = calculateToMiddle(
-                data.getValue("decTemp").toFloat(),
-                data.getValue("janTemp").toFloat(),
-                data.getValue("febTemp").toFloat()
-            )
-            var springT = calculateToMiddle(
-                data.getValue("marTemp").toFloat(),
-                data.getValue("aprTemp").toFloat(),
-                data.getValue("mayTemp").toFloat()
-            )
-            var summerT = calculateToMiddle(
-                data.getValue("junTemp").toFloat(),
-                data.getValue("julTemp").toFloat(),
-                data.getValue("augTemp").toFloat()
-            )
-            var autumnT = calculateToMiddle(
-                data.getValue("sepTemp").toFloat(),
-                data.getValue("ocTemp").toFloat(),
-                data.getValue("novTemp").toFloat()
-            )
-            mRepository.writeCityInfo(
-                name, type, converterTemp(winterT, KEY_ADD_CONVERT),
-                converterTemp(springT, KEY_ADD_CONVERT),
-                converterTemp(summerT, KEY_ADD_CONVERT),
-                converterTemp(autumnT, KEY_ADD_CONVERT)
-            )
-            mView.initAdapters()
-            mView.updateAdapters()
+        val name = data["name"].toString()
+        val type = data["type"].toString()
+        val winterT = calculateToMiddle(
+            data.getValue("decTemp").toFloat(),
+            data.getValue("janTemp").toFloat(),
+            data.getValue("febTemp").toFloat()
+        )
+        val springT = calculateToMiddle(
+            data.getValue("marTemp").toFloat(),
+            data.getValue("aprTemp").toFloat(),
+            data.getValue("mayTemp").toFloat()
+        )
+        val summerT = calculateToMiddle(
+            data.getValue("junTemp").toFloat(),
+            data.getValue("julTemp").toFloat(),
+            data.getValue("augTemp").toFloat()
+        )
+        val autumnT = calculateToMiddle(
+            data.getValue("sepTemp").toFloat(),
+            data.getValue("ocTemp").toFloat(),
+            data.getValue("novTemp").toFloat()
+        )
+        mRepository.writeCityInfo(
+            name, type, converterTemp(winterT, KEY_ADD_CONVERT),
+            converterTemp(springT, KEY_ADD_CONVERT),
+            converterTemp(summerT, KEY_ADD_CONVERT),
+            converterTemp(autumnT, KEY_ADD_CONVERT)
+        )
+        mView.initAdapters()
+        mView.updateAdapters()
 
-        }
     }
 
     override fun onCityWasSelected(name: String, season: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cityInfoMap = mRepository.loadCityInfo(name, season)
+        this.name = name
+        this.type = cityInfoMap["type"].toString()
+        this.season = season
+        this.middleTemp = convertTempToString(cityInfoMap["midTemp"] as Float)
+        mView.showResult(this.name, this.type, this.season, this.middleTemp)
     }
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mRepository.onDestroy()
     }
 
 

@@ -15,16 +15,16 @@ class DBHelper(
     DATABASE_VERSION
 ) {
     companion object {
-        private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "weatherDb"
-        private const val TABLE_NAME = "cityinfo"
-        private const val KEY_ID = "_id"
-        private const val KEY_NAME = "name"
-        private const val KEY_TYPE = "type"
-        private const val KEY_WIN = "winter"
-        private const val KEY_SPR = "spring"
-        private const val KEY_SUM = "summer"
-        private const val KEY_AUT = "autumn"
+        const val DATABASE_VERSION = 1
+        const val DATABASE_NAME = "weatherDb"
+        const val TABLE_NAME = "cityinfo"
+        const val KEY_ID = "_id"
+        const val KEY_NAME = "name"
+        const val KEY_TYPE = "type"
+        const val KEY_WIN = "winter"
+        const val KEY_SPR = "spring"
+        const val KEY_SUM = "summer"
+        const val KEY_AUT = "autumn"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
