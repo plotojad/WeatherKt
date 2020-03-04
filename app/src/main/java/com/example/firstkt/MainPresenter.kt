@@ -3,7 +3,8 @@ package com.example.firstkt
 import android.content.Context
 import android.content.SharedPreferences
 
-class MainPresenter(private val mView: MainContract.View, context: Context) : MainContract.Presenter {
+class MainPresenter(private val mView: MainContract.View, context: Context) :
+    MainContract.Presenter {
 
 
     companion object {

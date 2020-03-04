@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">testApp3</string>
+    <string name="app_name">WeatherTestKt</string>
     <string name="choiceTheCityAndSeason">Выберите город и сезон:</string>
     <string name="result">Результат:</string>
     <string name="city">Город:</string>
