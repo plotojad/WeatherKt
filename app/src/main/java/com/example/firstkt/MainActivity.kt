@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.example.firstkt.dialogs.AddInfoDialogFragment
 import com.example.firstkt.dialogs.SettingsDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 

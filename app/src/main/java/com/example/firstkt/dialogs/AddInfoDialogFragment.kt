@@ -24,7 +24,7 @@ class AddInfoDialogFragment(val mView: MainContract.View) : DialogFragment() {
         const val KEY_K = "Кельвин"
     }
 
-    lateinit var adapterSp: ArrayAdapter<String>
+    private lateinit var adapterSp: ArrayAdapter<String>
 
     private lateinit var mPresenter: MainContract.Presenter
     private lateinit var sharedPreferences: SharedPreferences
@@ -127,7 +127,7 @@ class AddInfoDialogFragment(val mView: MainContract.View) : DialogFragment() {
         viewsMap.getValue("name").hint = "Название города"
     }
 
-    override fun onCancel(dialog: DialogInterface?) {
+    override fun onCancel(dialog: DialogInterface) {
         dismiss()
         super.onCancel(dialog)
     }
